@@ -31,17 +31,20 @@ struct Vector
 };
 
 // by pointer
-Vector vectorSum(Vector* a, Vector* b) {
+Vector vectorSum(const Vector* const a, const Vector* b) {
     Vector sum = *a;
+    // (*a).x = 32; error ----> const Vector* a
+    // a += 1;      error ----> Vector* const a
     
     sum.vectorIncrement(*b);
     return sum;
 }
 
 // by reference
-Vector vectorDiff(Vector& a, Vector& b) {
-    std::cout << "&a: " << &a << std::endl;
+Vector vectorDiff(const Vector& a, Vector& b) {
     Vector diff = a;
+
+    // a.x = 123; error
     
     diff.vectorDecrement(b);
     return diff;
@@ -50,57 +53,23 @@ Vector vectorDiff(Vector& a, Vector& b) {
 
 int main()
 {
-    // pointers
-    // int a = 42;
-    // int c = 23;
-    // int* ptr;
+    Vector vecA, vecB;
 
-    // ptr = &a;
-    // std::cout << "ptr: " << *ptr << std::endl;
+    vecA.x = 12.23;
+    vecA.y = 23.34;
 
-    // ptr = &c;
-    // std::cout << "ptr: " << *ptr << std::endl;
+    vecB.x = 12.21212;
+    vecB.y = 23.31232;
 
-    // std::cout << "a: " << a << std::endl;
-    // std::cout << "c: " << c << std::endl;
+    vecA.vectorPrint();
+    vecB.vectorPrint();
 
-    // reference
-    int b = 42;
-    int foo = 12345;
+    Vector vecC = vectorSum(&vecA, &vecB);
 
-    int& ref = b;
-    std::cout << "ref: " << ref << std::endl;
+    vecC.vectorPrint();
 
-    ref = foo; // b = foo;
-    std::cout << "ref: " << ref << std::endl;
-
-    std::cout << "b  : " << b << std::endl;
-    std::cout << "foo: " << foo << std::endl;
-
-    std::cout << "size of: " << sizeof(int&) << std::endl;
+    std::cout << "is equal: " << vecA.vectorEqual(vecB) << std::endl;
 
     return 0;
 }
-
-
-
-
-    // Vector vecA, vecB;
-
-    // vecA.x = 12.23;
-    // vecA.y = 23.34;
-
-    // vecB.x = 12.21212;
-    // vecB.y = 23.31232;
-
-    // vecA.vectorPrint();
-    // vecB.vectorPrint();
-
-    // std::cout << "&vecA: " << &vecA << std::endl;
-
-    // Vector vecC = vectorDiff(vecA, vecB);
-
-    // vecC.vectorPrint();
-
-    // std::cout << "is equal: " << vecA.vectorEqual(vecB) << std::endl;
 

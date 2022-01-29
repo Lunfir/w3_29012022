@@ -1,13 +1,6 @@
 #include <stdio.h>
 
-typedef enum
-{
-    PASSPORT    = 42, 
-    SALARY      = 12,
-    POSITION    = 23,
-
-    ERROR       = -1 
-} Request;
+#define SIZE 4
 
 typedef enum
 {
@@ -16,53 +9,35 @@ typedef enum
     SHIFT   = 1 << 2
 } KeyMods;
 
+typedef union
+{
+    int number;
+    char arr[SIZE];
+} UnionTest;
+
+typedef struct
+{
+    int number;
+    char arr[SIZE];
+    double num;
+} StructTest;
+
 
 int main()
 {
-    KeyMods key;
+    printf("size of enum:   %llu\n", sizeof(KeyMods));
+    printf("size of union:  %llu\n", sizeof(UnionTest));
+    printf("size of struct: %llu\n", sizeof(StructTest));
 
-    scanf("%d", &key);
+    UnionTest uni;
 
-    if (key & ALT)
-    {
-        printf("ALT is Pressed\n");
-    }
+    uni.number = 120;
 
-    if (key == (ALT | CTRL))
-    {
-        printf("ALT+CTRL is Pressed\n");
-    }
-
-    if (key & (ALT | CTRL))
-    {
-        printf("ALT+CTRL+smth else is Pressed\n");
-    }
-
-    // Request req;
-
-    // scanf("%d", &req);
-
-    // if (req == PASSPORT)
-    // {
-    //     printf("Alpha\n");
-    // }
-
-    // if (req == SALARY)
-    // {
-    //     printf("Bravo\n");
-    // }
-
-    // if (req == POSITION)
-    // {
-    //     printf("Charlie\n");
-    // }
-
-    // if (req == ERROR)
-    // {
-    //     printf("Error!\n");
-    // }
-
-    // printf("size of enum: %llu\n", sizeof(Request));
-
+    printf("uni.number: %d\n", uni.number);
+    printf("uni.arr[0]: %c\n", uni.arr[0]);
+    printf("uni.arr[1]: %c\n", uni.arr[1]);
+    printf("uni.arr[2]: %c\n", uni.arr[2]);
+    printf("uni.arr[3]: %c\n", uni.arr[3]);
+    
     return 0;
 }

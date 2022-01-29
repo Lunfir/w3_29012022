@@ -1,33 +1,33 @@
 #include <stdio.h>
 
-void foo()
+void fooA()
 {
-    printf("foo\n");
+    printf("fooA\n");
 }
 
-int sum(int a, int b)
+void fooB()
 {
-    return a + b;
+    printf("fooB\n");
 }
+
+void fooC()
+{
+    printf("fooC\n");
+}
+
 
 int main()
 {
-    ////////////////
-    int num = 42;
-    int* ptrNum;
-    ptrNum = &num;
+    void(*functions[])() = { &fooA, &fooB, &fooC };
 
-    ////////////////
-    void(*ptrFunc)();
-    ptrFunc = &foo;
+    // functions[0] = &fooA;
+    // functions[1] = &fooB;
+    // functions[2] = &fooC;
 
-    (*ptrFunc)();
-    ptrFunc();
-
-    ////////////////
-    int(*ptrSum)(int, int) = &sum;
-
-    printf("sum: %d\n", ptrSum(2, 3));
+    for (int i = 0; i < 3; i++)
+    {
+        functions[i]();
+    }
 
     return 0;
 }

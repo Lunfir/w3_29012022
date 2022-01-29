@@ -1,32 +1,34 @@
 #include <stdio.h>
 
-void fooA()
+void fooA(int num)
 {
-    printf("fooA\n");
+    printf("fooA: %d\n", num + 1);
 }
 
-void fooB()
+void fooB(int num)
 {
-    printf("fooB\n");
+    printf("fooB: %d\n", num + 2);
 }
 
-void fooC()
+void fooC(int num)
 {
-    printf("fooC\n");
+    printf("fooC: %d\n", num + 3);
+}
+
+
+void handler(void(*ptrFunc)(int), int param)
+{
+    ptrFunc(param);
 }
 
 
 int main()
 {
-    void(*functions[])() = { &fooA, &fooB, &fooC };
-
-    // functions[0] = &fooA;
-    // functions[1] = &fooB;
-    // functions[2] = &fooC;
+    void(*functions[])(int) = { &fooA, &fooB, &fooC };
 
     for (int i = 0; i < 3; i++)
     {
-        functions[i]();
+        handler(functions[i], i);
     }
 
     return 0;

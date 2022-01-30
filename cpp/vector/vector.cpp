@@ -16,9 +16,27 @@ Vector::Vector(double x, double y)
     this->y = y;
 }
 
+Vector::Vector(const Vector& other)
+{
+    std::cout << __PRETTY_FUNCTION__ << std::endl;
+
+    this->x = other.x;
+    this->y = other.y;
+}
+
 Vector::~Vector()
 {
     std::cout << __PRETTY_FUNCTION__ << std::endl;
+}
+
+Vector& Vector::operator=(const Vector& other)
+{
+    std::cout << __PRETTY_FUNCTION__ << std::endl;
+
+    this->x = other.x;
+    this->y = other.y;
+
+    return *this;
 }
 
 void Vector::operator+=(const Vector& other)

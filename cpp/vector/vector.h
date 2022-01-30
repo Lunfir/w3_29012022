@@ -8,7 +8,10 @@ class Vector
     friend std::ostream& operator<<(std::ostream& os, const Vector& obj);
 
 public:
-    // friend std::ostream& operator<<(std::ostream& os, const Vector& obj);
+    Vector();
+    Vector(double x/* = 0.0*/, double y/* = 0.0*/);
+
+    ~Vector();
 
     void operator+=(const Vector& other);
 

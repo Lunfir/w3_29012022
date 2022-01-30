@@ -1,5 +1,25 @@
 #include "vector.h"
 
+Vector::Vector()
+{
+    std::cout << __PRETTY_FUNCTION__ << std::endl;
+
+    this->x = 0.0;
+    this->y = 0.0;
+}
+
+Vector::Vector(double x, double y)
+{
+    std::cout << __PRETTY_FUNCTION__ << std::endl;
+
+    this->x = x;
+    this->y = y;
+}
+
+Vector::~Vector()
+{
+    std::cout << __PRETTY_FUNCTION__ << std::endl;
+}
 
 void Vector::operator+=(const Vector& other)
 {

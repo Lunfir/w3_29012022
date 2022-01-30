@@ -4,25 +4,22 @@
 
 int main()
 {
-    Vector vecA, vecB;
+    Vector vecA(12.23, 23.34);      // 1
+    Vector vecB;                    // 2
+    Vector vecC = Vector(2.3, 4.5); // 3
 
-    vecA.setX(12.23);
-    vecA.setY(23.34);
-
-    vecB.setX(12.21212);
-    vecB.setY(23.31232);
-
-    std::cout << "before: " << vecA << std::endl;
+    std::cout << vecA << std::endl;
     std::cout << vecB << std::endl;
+    std::cout << vecC << std::endl;
 
-    vecA += vecB;
-    // vecA.operator+=(vecB);
+    // vecA += vecB;
+    // // vecA.operator+=(vecB);
 
-    std::cout << "after: " << vecA << std::endl;
+    // std::cout << "after: " << vecA << std::endl;
 
-    // Vector vecC = vectorSum(&vecA, &vecB);
+    // // Vector vecC = vectorSum(&vecA, &vecB);
 
-    std::cout << "is equal: " << (vecA == vecB) << std::endl; // vecA@vecB
+    // std::cout << "is equal: " << (vecA == vecB) << std::endl; // vecA@vecB
 
     return 0;
 }

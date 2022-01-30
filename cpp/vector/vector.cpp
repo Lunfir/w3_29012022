@@ -1,7 +1,10 @@
 #include "vector.h"
 
 
-void Vector::vectorIncrement(Vector other) {
+void Vector::operator+=(const Vector& other)
+{
+    std::cout << __PRETTY_FUNCTION__ << std::endl;
+
     this->x += other.x;
     this->y += other.y;
 }
@@ -11,16 +14,15 @@ void Vector::vectorDecrement(Vector other) {
     this->y -= other.y;
 }
 
-bool Vector::vectorEqual(Vector other) const {
+bool Vector::operator==(const Vector& other) const
+{
+    std::cout << __PRETTY_FUNCTION__ << std::endl;
+
     return this->x == other.x && this->y == other.y;
 }
 
 double Vector::vectorLen() const {
     return hypot(this->x, this->y);
-}
-
-void Vector::vectorPrint() const {
-    std::cout << "(" << this->x << ", " << this->y << ")" << std::endl;
 }
 
 void Vector::setX(double x)
@@ -41,4 +43,11 @@ void Vector::setY(double y)
 double Vector::getY() const
 {
     return this->y;
+}
+
+std::ostream& operator<<(std::ostream& os, const Vector& obj)
+{
+    os << "(" << obj.x << ", " << obj.y << ")";
+
+    return os;
 }

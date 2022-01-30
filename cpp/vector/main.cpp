@@ -12,14 +12,17 @@ int main()
     vecB.setX(12.21212);
     vecB.setY(23.31232);
 
-    vecA.vectorPrint();
-    vecB.vectorPrint();
+    std::cout << "before: " << vecA << std::endl;
+    std::cout << vecB << std::endl;
+
+    vecA += vecB;
+    // vecA.operator+=(vecB);
+
+    std::cout << "after: " << vecA << std::endl;
 
     // Vector vecC = vectorSum(&vecA, &vecB);
 
-    // vecC.vectorPrint();
-
-    std::cout << "is equal: " << vecA.vectorEqual(vecB) << std::endl;
+    std::cout << "is equal: " << (vecA == vecB) << std::endl; // vecA@vecB
 
     return 0;
 }

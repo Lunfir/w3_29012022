@@ -5,16 +5,18 @@
 
 class Vector
 {
+    friend std::ostream& operator<<(std::ostream& os, const Vector& obj);
+
 public:
-    void vectorIncrement(Vector other);
+    // friend std::ostream& operator<<(std::ostream& os, const Vector& obj);
+
+    void operator+=(const Vector& other);
 
     void vectorDecrement(Vector other);
 
-    bool vectorEqual(Vector other) const;
+    bool operator==(const Vector& other) const;
 
     double vectorLen() const;
-
-    void vectorPrint() const;
 
     void setX(double x);
     double getX() const;
@@ -26,3 +28,5 @@ private:
     double x;
     double y;
 };
+
+std::ostream& operator<<(std::ostream& os, const Vector& obj);
